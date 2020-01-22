@@ -1,41 +1,39 @@
 require('dotenv').config();
-const rp = require('request-promise');
 const xml2js = require('xml2js');
-const util = require('util');
+const fetch = require('node-fetch');
 const express = require('express');
 const app = express();
-
-const options = {
-  method: 'GET',
-  uri: `https://www.goodreads.com/review/list/${process.env.USER_ID}.xml`,
-  qs: {
-    key: process.env.KEY,
-    v: process.env.VERSION,
-    shelf: process.env.SHELF,
-    per_page: process.env.PER_PAGE
-  }
-};
-
-rp(options)
-  .then(res => {
-    xml2js.parseString(res, (err, result) => {
-      const books = result['GoodreadsResponse']['reviews'][0]['review'];
-      let titles = [],
-        images = [],
-        ratings = [];
-      books.forEach(book => {
-        titles.push(book['book'][0]['title']);
-        images.push(book['book'][0]['image_url']);
-        ratings.push(book['book'][0]['average_rating']);
-
-        app.get('/', (req, res) => {
-          res.send(titles);
-        });
-      });
-    });
-  })
-  .catch(err => console.log(err));
-
 const PORT = process.env.PORT || 3000;
-const server = app.listen(PORT);
-console.log(`Server running on port ${PORT}`);
+
+const shelf = 'to-read';
+app.get('/', async (req, res) => {
+  try {
+    const key = process.env.KEY;
+    const shelf = 'to-read';
+    const perPage = 200; // 200 max
+
+    const response = await fetch(
+      `http://www.goodreads.com/review/list/7554526.xml?key=${key}&v=2&shelf=${shelf}&per_page=${perPage}`
+    );
+    const data = await response.text();
+
+    if (data.errors && data.errors.length > 0) {
+      return res.status(400).json({
+        message: 'Not found'
+      });
+    }
+    xml2js.parseString(data, (err, result) => {
+      const books = result['GoodreadsResponse']['reviews'][0]['review'];
+      res.send(JSON.stringify(books));
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: 'Server error'
+    });
+  }
+});
+
+const server = app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
