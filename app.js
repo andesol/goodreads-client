@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const shelf = 'to-read';
-app.get('/', async (req, res) => {
+app.get('/api', async (req, res) => {
   try {
     const key = process.env.KEY;
     const shelf = 'to-read';
@@ -22,9 +22,20 @@ app.get('/', async (req, res) => {
         message: 'Not found'
       });
     }
+    let booksArr = [];
     xml2js.parseString(data, (err, result) => {
       const books = result['GoodreadsResponse']['reviews'][0]['review'];
-      res.send(JSON.stringify(books));
+
+      books.forEach(book =>
+        booksArr.push({
+          title: book['book'][0]['title'][0],
+          author: book['book'][0]['authors'][0]['author'][0]['name'][0],
+          image: book['book'][0]['image_url'][0],
+          rating: book['book'][0]['average_rating'][0],
+          description: book['book'][0]['description'][0]
+        })
+      );
+      res.json(booksArr);
     });
   } catch (err) {
     console.error(err);
