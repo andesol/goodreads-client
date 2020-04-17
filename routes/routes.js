@@ -3,19 +3,14 @@ const router = express.Router();
 const xml2js = require('xml2js');
 const fetch = require('node-fetch');
 const querystring = require('querystring');
-
-var cache = [];
+const htmlToText = require('html-to-text');
 
 router.get('/', (req, res) => {
-    console.log(req.query);
     res.render('form');
 });
 
-router.get('/book', async (req, res) => {
-    // Development
-    // user = '7554526-andreu';
-    // console.log(books);
-    // res.render('books', { books, user })
+router.get('/random', async (req, res) => {
+
     try {
         const qs = querystring.stringify({
             key: process.env.KEY,
@@ -27,12 +22,16 @@ router.get('/book', async (req, res) => {
         const response = await fetch(
             `https://www.goodreads.com/review/list/${user}.xml?${qs}`
         );
+
         if (response.status === 404) {
-            res.send('<h1>User not found</h1>')
+            res.render('error', { msg: 'User not found' });
+            return;
         }
 
         const data = await response.text();
+
         xml2js.parseString(data, (err, result) => {
+
             const booksRaw = result.GoodreadsResponse.reviews[0].review;
 
             const books = booksRaw.map((book) => ({
@@ -40,40 +39,19 @@ router.get('/book', async (req, res) => {
                 author: book.book[0].authors[0].author[0].name[0],
                 image: book.book[0].image_url[0],
                 rating: book.book[0].average_rating[0],
-                description: book.book[0].description[0],
+                description: htmlToText.fromString(book.book[0].description[0]),
+                link: book.book[0].link[0],
             }));
-
-            cache.books = books;
-            cache.user = user;
 
             const randomNumber = Math.floor(Math.random() * books.length + 1);
 
             const chosenBook = books[randomNumber];
-
-
-
-            res.render('individualBook', { book: chosenBook })
-            // res.render('books', { books, user })
+            res.render('individualBook', { book: chosenBook, user: user })
         });
 
     } catch (err) {
-        console.error(err);
-        res.status(500).json({
-            message: 'Server error',
-        });
+        res.render('error', { msg: 'Something went wrong' });
     }
-});
-
-router.get('/booklist', (req, res) => {
-
-    const books = cache.books;
-    const user = cache.user;
-
-    console.log(books)
-
-    res.render('bookList', { books, user })
-
-
 });
 
 module.exports = router;

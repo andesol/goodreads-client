@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "server": "nodemon app.js",
+    "dev": "nodemon app.js",
     "lint:fix": "eslint --fix app.js"
   },
   "author": "",
@@ -21,6 +21,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.3",
+    "html-to-text": "^5.1.1",
     "node-fetch": "^2.6.0",
     "xml2js": "^0.4.23"
   }
