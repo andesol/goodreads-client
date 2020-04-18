@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
 });
 
 router.get('/random', async (req, res) => {
-
     try {
         const qs = querystring.stringify({
             key: process.env.KEY,

@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
-    "lint:fix": "eslint --fix app.js"
+    "lint:fix": "eslint --fix app.js",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
