@@ -1,3 +1,7 @@
+/* --------------
+    Base
+----------------- */
+
 /* Imports */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap');
 
@@ -64,25 +68,25 @@ pre {
     height: 100px;
 }
 
-.main-header__logo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    color: inherit;
-    font-size: 1.25rem;
-}
+    .main-header__logo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: inherit;
+        font-size: 1.25rem;
+    }
 
-.main-header__title {
-    display: block;
-    margin-bottom: 0;
-}
+    .main-header__title {
+        display: block;
+        margin-bottom: 0;
+    }
 
-.main-header__tagline {
-    display: block;
-    margin-top: 0;
-}
+    .main-header__tagline {
+        display: block;
+        margin-top: 0;
+    }
 
 .footer {
     display: flex;
@@ -108,8 +112,8 @@ pre {
     align-items: center;
     width: 100%;
     margin-top: 8rem;
-
 }
+
 .form {
     display: flex;
     align-items: center;
@@ -117,20 +121,20 @@ pre {
     margin-top: 2rem;
 }
 
-input[type='text'] {
-    height: 55px;
-    width: 400px;
-    margin-right: 0.5rem;
-    padding: 1rem;
-    font-size: 20pt;
-    border-radius: 15px;
-    border: 2px solid var(--main-color);
-}
+    input[type='text'] {
+        height: 55px;
+        width: 400px;
+        margin-right: 0.5rem;
+        padding: 1rem;
+        font-size: 20pt;
+        border-radius: 15px;
+        border: 2px solid var(--main-color);
+    }
 
-input[type='text']::placeholder {
-    opacity: 0.3;
+    input[type='text']::placeholder {
+        opacity: 0.3;
+    }
 
-}
 .btn {
     background-color: transparent;
     color: var(--dark-color);
@@ -138,18 +142,18 @@ input[type='text']::placeholder {
     cursor: pointer;
 }
 
-.btn svg {
-    stroke: var(--dark-color);
-}
-.btn svg:hover  {
-    stroke: var(--main-color);
-}
+    .btn svg {
+        stroke: var(--dark-color);
+    }
+    .btn svg:hover  {
+        stroke: var(--main-color);
+    }
 
-.btn--submit > * {
-    background-color: none;
-    width: 40px;
-    height: 40px;
-}
+    .btn--submit > * {
+        background-color: none;
+        width: 40px;
+        height: 40px;
+    }
 
 /* Individual book page */
 .book {
@@ -162,17 +166,18 @@ input[type='text']::placeholder {
     padding: 2rem 0rem;
     background-color: rgb(230, 230, 230);
 }
-.book__info {
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
-.book__description {
-    width: 45%;
-}
+    .book__info {
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .book__description {
+        width: 45%;
+    }
 
 .i-star > svg {
     margin-top: 10px;
@@ -187,16 +192,16 @@ input[type='text']::placeholder {
     align-items: center;   
 }
 
-.options > a {
-    display: inline;
-    margin: 0 2rem;
-    text-decoration: none;
-    color: var(--main-color);
-}
+    .options > a {
+        display: inline;
+        margin: 0 2rem;
+        text-decoration: none;
+        color: var(--main-color);
+    }
 
-.options > a:hover {
-    border-bottom: 3px solid var(--main-color);
-}
+    .options > a:hover {
+        border-bottom: 3px solid var(--main-color);
+    }
 
 .i-outside {
     height: 1rem;

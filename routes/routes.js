@@ -4,6 +4,7 @@ const xml2js = require('xml2js');
 const fetch = require('node-fetch');
 const querystring = require('querystring');
 const htmlToText = require('html-to-text');
+const config = require('../config/config.js');
 
 router.get('/', (req, res) => {
     res.render('form');
@@ -12,12 +13,13 @@ router.get('/', (req, res) => {
 router.get('/random', async (req, res) => {
     try {
         const qs = querystring.stringify({
-            key: process.env.KEY,
-            v: process.env.VERSION,
-            per_page: process.env.PER_PAGE,
-            shelf: process.env.SHELF,
+            key: config.apiKey,
+            v: config.version,
+            per_page: config.booksPerPage,
+            shelf: config.shelf,
         });
         const user = req.query.user;
+
         const response = await fetch(
             `https://www.goodreads.com/review/list/${user}.xml?${qs}`
         );
@@ -45,7 +47,7 @@ router.get('/random', async (req, res) => {
             const randomNumber = Math.floor(Math.random() * books.length + 1);
 
             const chosenBook = books[randomNumber];
-            res.render('individualBook', { book: chosenBook, user: user })
+            res.render('individualBook', { book: chosenBook, user: user });
         });
 
     } catch (err) {
