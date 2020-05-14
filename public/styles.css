@@ -8,7 +8,8 @@
 :root {
     --main-color: rgb(248, 108, 43);
     --dark-color: rgb(100, 100, 100);
-    --background: rgba(244,241,234,0.5);
+    --background: rgb(228, 228, 228);
+    --header-color: #F4F2E9;
     --main-font: 'Montserrat', sans-serif;
 }
 
@@ -51,11 +52,13 @@ pre {
 
 /* Layout
  ------------------------------------------*/
-.main-header{
+
+ .main-header {
     color: var(--dark-color);
+    background: var(--header-color);
     height: 130px;
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.3);
-
+    z-index: 1;
 }
 
     .main-header__logo {
@@ -147,14 +150,13 @@ pre {
 
 /* Individual book page 
 ----------------------------------------------*/
+
 .book {
     display: flex;
     flex-direction: column;
     align-items: center;
     border: none;
-    border-radius: 10px;
-    margin: 1rem 0.75rem;
-    padding: 2rem 0rem;
+    padding: 2.5rem 0rem;
     background-color: rgb(230, 230, 230);
 }
 
@@ -203,6 +205,7 @@ pre {
 
 /* Error page
 ----------------------------------------------*/
+
 .error-message {
     width: 400px;
     margin: 8rem auto;
