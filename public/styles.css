@@ -1,15 +1,14 @@
-/*     Base
------------------------------------------------- */
+/* ===== BASE =====  */
 
 /* Imports */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap');
 
 /* Variables */
 :root {
-    --main-color: rgb(248, 108, 43);
-    --dark-color: rgb(100, 100, 100);
-    --background: rgb(228, 228, 228);
-    --header-color: #F4F2E9;
+    --main-clr: rgb(248, 108, 43);
+    --dark-clr: rgb(100, 100, 100);
+    --bkg-clr: rgb(179, 179, 179);
+    --header-clr: #F4F2E9;
     --main-font: 'Montserrat', sans-serif;
 }
 
@@ -21,8 +20,9 @@
 html {
     height: 100%;
 }
+
 body {
-    background-color: var(--background);
+    background-color: var(--header-clr);
     margin: 0;
     padding: 0;
     font-family: var(--main-font);
@@ -36,28 +36,12 @@ pre {
     font-size: 20px;
 }
 
-/* Utilities
------------------------------------------------------- */
-
-.highlighted {
-    border-bottom: 3px solid var(--main-color);
-    font-weight: bold;
-    color: var(--main-color);
-}
-
-.thin {
-    font-weight: 100;
-}
-
-
-/* Layout
- ------------------------------------------*/
+/* ===== LAYOUT ===== */
 
  .main-header {
-    color: var(--dark-color);
-    background: var(--header-color);
+    color: var(--dark-clr);
+    background: var(--header-clr);
     height: 130px;
-    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.3);
     z-index: 1;
 }
 
@@ -92,8 +76,7 @@ pre {
 }
 
 
-/* Home page
------------------------------------------------*/
+/* ====== HOME PAGE ===== */
 
 .form-group {
     display: flex;
@@ -119,9 +102,9 @@ pre {
         width: 400px;
         margin-right: 0.5rem;
         padding: 1rem;
-        font-size: 20pt;
+        font-size: 18pt;
         border-radius: 15px;
-        border: 2px solid var(--main-color);
+        border: 2px solid var(--main-clr);
     }
 
     input[type='text']::placeholder {
@@ -130,16 +113,16 @@ pre {
 
 .btn {
     background-color: transparent;
-    color: var(--dark-color);
+    color: var(--dark-clr);
     border: none;
     cursor: pointer;
 }
 
     .btn svg {
-        stroke: var(--dark-color);
+        stroke: var(--dark-clr);
     }
     .btn svg:hover  {
-        stroke: var(--main-color);
+        stroke: var(--main-clr);
     }
 
     .btn--submit > * {
@@ -148,8 +131,8 @@ pre {
         height: 40px;
     }
 
-/* Individual book page 
-----------------------------------------------*/
+
+/* ===== INDIVIDUAL BOOK PAGE ===== */
 
 .book {
     display: flex;
@@ -189,25 +172,36 @@ pre {
         display: inline;
         margin: 0 2rem;
         text-decoration: none;
-        color: var(--main-color);
+        color: var(--main-clr);
     }
 
     .options > a:hover {
-        border-bottom: 3px solid var(--main-color);
+        border-bottom: 3px solid var(--main-clr);
     }
 
 .i-outside {
     height: 1rem;
     width: 1rem;
-    stroke: var(--main-color)
+    stroke: var(--main-clr)
 }
 
 
-/* Error page
-----------------------------------------------*/
+/* ===== ERROR PAGE ===== */
 
 .error-message {
     width: 400px;
     margin: 8rem auto;
     font-size: 20pt;
+}
+
+/* ===== UTILITIES ===== */
+
+.highlighted {
+    border-bottom: 3px solid var(--main-clr);
+    font-weight: bold;
+    color: var(--main-clr);
+}
+
+.thin {
+    font-weight: 100;
 }
