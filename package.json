@@ -4,9 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js",
-    "start": "node app.js",
-    "lint:fix": "eslint --fix app.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "lint:fix": "eslint --fix index.js"
   },
   "author": "",
   "license": "ISC",
